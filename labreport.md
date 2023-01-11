@@ -1,5 +1,5 @@
-# **CSE15L Lab Report**
-## *How to log into a course-specific account on ieng6 through VS Code*
+# ** CSE15L Lab Report ** #
+## * How to log into a course-specific account on ieng6 through VS Code * ##
 
 ---
 
