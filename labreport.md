@@ -59,6 +59,9 @@ Other commands to try include:
 * `cp /home/linux/ieng6/cs15lwi23/public/hello.txt ~/`
 * `cat /home/linux/ieng6/cs15lwi23/public/hello.txt`
 
+Here are some examples:  
+<img width="774" alt="image" src="https://user-images.githubusercontent.com/122249106/212562632-10f6f6d0-78fd-4b96-8200-006d3cc6893a.png">  
+
 Once you are done testing, you can simply do:
 * CTRL + D
 *  Run `exit`  
