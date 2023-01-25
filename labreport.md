@@ -44,25 +44,37 @@ Common mistakes to look out for:
 3. If your TritonLink SSO doesn't work, you may want to change your password at [https://sdacs.ucsd.edu/~icc/index.php](https://sdacs.ucsd.edu/~icc/index.php). It will take a while to update, however, so be patient!
 
 Once you are in, you should see something like this:
-<img width="743" alt="image" src="https://user-images.githubusercontent.com/122249106/212561251-2c8c44d1-5b0c-417f-aebc-89b3c6e57ed6.png">  
+<img width="743" alt="enterImage" src="https://user-images.githubusercontent.com/122249106/212561251-2c8c44d1-5b0c-417f-aebc-89b3c6e57ed6.png">  
 Congratulations! Your computer is now remotely connected to a computer in the CSE Basement!  
 
 ## Step 3 - Running Remote Commands ##  
-On your terminal in VS Code, you can run both remote (remote computer) and local (your computer) commands, by ussing the `ssh` keyword! Starting your code lines with `ssh` will cause them to be run remotely. Trying running various commands such as `cd`, `ls`, `pwd`, `mkdir`, and `cp` in various ways on both your computer and the remote computer (`ssh`). What differences and similarities do you notice? What happens?  
+On your terminal in VS Code, you can run both remote (remote computer) and local (your computer) commands, by ussing the `ssh` (secure shell protocol) keyword! Starting your code lines with `ssh` will cause them to be run remotely. Trying running various commands such as `cd`, `ls`, `pwd`, `mkdir`, and `cp` in various ways on both your computer and the remote computer (`ssh`). Here is a quick explanation of what each command is:
 
-Other commands to try include:
+* `pwd` **Print Working Directory**: Calling pwd prints out your current working directory in the terminal, which can be very helpful to know where you are. Pwd is different for both your terminal and your remote computer. Try it for yourself!
+* `cd` **Change Directory**: This command changes your current working directory, where is where your computer currently "is". It takes both a relative and absolute path as an argument. 
+* `ls` **List**: This lists out the other files in your current working directory, so you can see what's nearby! Try it out! Here are some cool arguments to try with it! [Link here.](https://man7.org/linux/man-pages/man1/ls.1.html)
+* `mkdir` **Make Directory**: Mkdir allows your to make both files and folders in your current working directory! If you pass it a path with a file/folder not there, it can make it.
+* `cp` **Copy a File**: By doing cp, it can take two arguments: the file you want to copy and the directory you want to move it to.
+
+Let's do a quick demonstration:  
+<img width="758" alt="image" src="https://user-images.githubusercontent.com/122249106/214717830-2d7d6770-9908-487f-a982-6394557afe04.png">   
+
+First of all, calling `pwd` prints the path to where I currently "am", and as a student part of the cse15l group, you can see how we are my specific location is on a linux computer, on ieng6, part of the cs15lwi23 class, and then have an individual folder for my own username. Then, typing `ls` gives me the other files and folders within my current directory, similar to what I would see if I opened the contents of a folder. I then use `cd` with just wavelet as an argument, as wavelet is one of the files next to me in the current working directory, so it can be taken as a relative path and navigated into. The terminal gives no response to `cd`, but don't fear, it still works, it is normal for the terminal to not print anything if it works! Finally, `ls` again gives a whole new batch of files, as I am "inside" a different directory.  
+
+<img width="566" alt="image" src="https://user-images.githubusercontent.com/122249106/214719591-014a90c6-c131-4c0b-9a2e-824eed4fa57c.png">    
+
+ Now, we do `cd ..` to move ourselves back to where we started. `..` represents the parent directory, and there are other various shortcuts such as `.` (current directory) and `~` represents the home directory. Doing `pwd` again shows how we are back out of wavelet. Then, passing `mkdir` with an absolute path allows me to create a directory, as there currently is no demonstration directory. Typing `ls` again will show that there is now a demonstration directory. There are much more commands to try, so now, feel free to explore!
+
+
+Knowing what I've told you, what do you think these mean?
 * `cd ~`
 * `cd`
 * `ls -lat`
 * `ls -a`
-* `ls <directory>` where `<directory>` is `/home/linux/ieng6/cs15lwi23/cs15lwi23abc`, where the `abc` is one of the other group members’ username
 * `cp /home/linux/ieng6/cs15lwi23/public/hello.txt ~/`
 * `cat /home/linux/ieng6/cs15lwi23/public/hello.txt`
 
-Here are some examples:  
-<img width="774" alt="image" src="https://user-images.githubusercontent.com/122249106/212562632-10f6f6d0-78fd-4b96-8200-006d3cc6893a.png">  
-
-Once you are done testing, you can simply do:
+Once you are tired and done testing, you can simply do one of these options:
 * CTRL + D
 *  Run `exit`  
 
