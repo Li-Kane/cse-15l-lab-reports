@@ -1,7 +1,7 @@
 # CSE15L Lab Report 1 #
 ### How to log into a course-specific account on ieng6 through VS Code ###  
 ---
-*Kane Li, 15th January 2023*
+*Kane Li, 25th January 2023*
 
 This lab will cover three main steps:
 1. Installing Visual Studio (VS) Code and Opening a Terminal
@@ -81,4 +81,4 @@ Once you are tired and done testing, you can simply do one of these options:
 And that's it! Congratulations on learning how to establish a remote connection to ieng6 through VS Code! 
 
 ---
-*By Kane Li, 15 January 2023*
+*By Kane Li, 25 January 2023*
