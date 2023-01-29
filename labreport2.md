@@ -122,3 +122,8 @@ Here is the fixed code:
     return sum / (arr.length - lowestCount); //now divides sum only by the elements that contributed
   }
   ```
+  
+  ## Part 3 ##
+  Knowledge wise, the week 3 paper on [Student Correctness](https://drive.google.com/file/d/1zbMVZxsI1zOBPhSsvBi4kB5dPJuxyOJh/view) has shown me to some extent that my standards for programming are actually a bit subpar, where only doing the main task doesn't mean a program is correct. It kinda shows to me how with the way assignments are structured, it makes it easy for me to sometimes target my programs toward very specific goals, instead of making it comprehensive and whole. Of course, they can never be perfect, but it motivates me to try to conquer roadblocks in my coding rather than just swerve around them. That it isn't a waste of time to try and figure out an assignment.
+  
+  Coding wise, I learned how standardized a url really is, and the various parts that comprise it. For instance, the domain tells us which server is hosting it, there is a path to determine which website to navigate to, and even various symbols such as query(?). It really shows to me just how much of computer science is standardized, and that accomplishing goals in programming doesn't always require lots of math of logic. Rather, it is just as important (and maybe even more important) to know which tools to use.
