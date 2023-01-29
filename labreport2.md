@@ -113,13 +113,13 @@ Here is the fixed code:
     for(double num: arr) {
       if(num < lowest) { lowest = num; }
     }
-    int lowestCount = 0; //new var to keep track of how many duplicate lowest
+    int lowestCount = 0; //var to track duplicate lowest
     double sum = 0; 
     for(double num: arr) {
-      if(num == lowest) {lowestCount++; } //increments each time a value is the same as lowest
+      if(num == lowest) {lowestCount++; } //increments at duplicates
       if(num != lowest) { sum += num; }
     }
-    return sum / (arr.length - lowestCount); //now divides sum only by the elements that contributed
+    return sum / (arr.length - lowestCount); //fixed bug
   }
   ```
   
