@@ -1,6 +1,5 @@
 # CSE 15L Lab Report 2 #  
 *Kane Li, 27th January 2023*
-
 ----
 This Lab Report covers my learning of StringServer, debugging, and a reflection for what I've learned during weeks 2 and 3 in CSE15L. 
 
