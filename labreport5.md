@@ -47,7 +47,6 @@ A couple weaknesses of this initial skeleton is that currently, it only checks w
 1. Check the method signatures in the grading script
 2. Change the output to give a percentage based score depending on the amount of tests passed and failed
 3. Add comprehensive feedback which gives insight into what type or error and where it occurred
-4. Make the gradeServer take input not simply from the taskbar
 
 ### Part 1: Implement checks for the method isgnatures ###
 For this section, I implemented grep checks for whether there were exact matches for the required necessary method signatures in cases where one or both methods are incorrect or missing. Here is the added segment:
@@ -78,7 +77,6 @@ When the filter() method is missing (I made this repository myself to as a teste
 
 ### Part 2: Change the output to give a percentage score depending on the amount of tests passed and failed ###
 Inspired by the use of ChatGPT to accomplish this task during lecture, I sought out to accomplish this myself. The overall code segments I implemented look like this: 
-
 ````bash
 #awk command that defines calc() for floating-point division
 calc(){ awk "BEGIN { print $*}"; }
@@ -92,12 +90,42 @@ calc(){ awk "BEGIN { print $*}"; }
         FRACTION=$(calc $PASSED/$TESTSRUN)
         PERCENT=$(calc $FRACTION*100)
         echo "You failed" $FAILURES "tests out of" $TESTSRUN to get a $PERCENT"%"
-        echo "The tests that failed were"
-        grep "(TestListExamples)" results.txt
 ````
+`calc(){ awk "BEGIN { print $*}"; }`: The calc() section was inserted towards the front of the script, to define a function which is used for integer division, which is surprisingly hard to accomplish in bash. In terms of the process, I originally tried to use bc, but I didn't want to have to install anything so that others could use my code, and bc wouldn't be recognized unless it was installed. Therefore, I eventually stumbled upon awk. Essentially, it simply works by defining a function through `calc(){;}`, where whenever I call calc I want to run `awk "BEGIN {print$*}"`. BEGIN simply allows it so that the command `print$*`is actually run, and `$*` allows for it to take in all the arguments passed in and conduct arithmetic operations.
 
+The second chunk of getting the necessary values is simply doing a grep expression to filter out the specific digits of the amount of tests run and tests failed as the JUnit output is stored in results.txt. Then, it simply subtracts the failures from amount run to calculate how many were passed, and stores the amount that passed divided by the amount of tests into a variable, which is then turned into a percent through being multiplied by 100. This code chunk was inserted at the if statement that checks whether there was matching JUnit output for errors, such that the percent is only calculated if there are JUnit errors. Here are some examples:
 
+When both methods fail: [https://github.com/ucsd-cse15l-f22/list-methods-lab3.git](https://github.com/ucsd-cse15l-f22/list-methods-lab3.git)  
+<img width="573" alt="image" src="https://user-images.githubusercontent.com/122249106/224526312-926134ce-01fd-48e2-b803-34e456ac8688.png">
 
+When both methods have a correct implementation: [https://github.com/ucsd-cse15l-f22/list-methods-corrected.git](https://github.com/ucsd-cse15l-f22/list-methods-corrected.git)  
+<img width="587" alt="image" src="https://user-images.githubusercontent.com/122249106/224526342-737b0fd3-3259-4263-940e-011a8f3dbed9.png">
+
+When merge() passes but filter() fails (self-made): [https://github.com/Li-Kane/partialPassLabReport5.git](https://github.com/Li-Kane/partialPassLabReport5.git)  
+<img width="577" alt="image" src="https://user-images.githubusercontent.com/122249106/224526375-70d32d0c-a62c-42c6-b0f8-f0b1e1e1b487.png">
+
+When there are subtle errors on both: [https://github.com/ucsd-cse15l-f22/list-examples-subtle.git](https://github.com/ucsd-cse15l-f22/list-examples-subtle.git)  
+<img width="575" alt="image" src="https://user-images.githubusercontent.com/122249106/224526420-bb9d5fcf-cf4e-410c-b13a-cf1df3b93c7a.png">
+
+### Part 3: Add comprehensive feedback of when and where the error occurred ###
+Ultimately, this section mainly consisted of creating clearer feedback, through a couple of changes:
+1. `"Unable to find ListExamples.java! Make sure it is not inside any other directories and has proper naming! You get a 0%"`: I added this portion in the if statement that checks if ListExamples.Java could be found.
+2. `echo "The tests that failed were"` and `grep "(TestListExamples)" results.txt`. These are ran when the script detects a failure, and simply gives the method names that failed. I opted not to print the whole JUnit output as most tests on gradescope don't really seem to do that, so I want the student to figure it out themselves.
+3. `String instructions = "Welcome to lab3 autograder!\n" + "To begin, please enter your arguments in the url bar after the domain as:\n" + "/grade?repo=linkToYourRepository.git\n" + "----------------------------------------------------------------------------------\n\n";`: I added this portion to GradeServer.java inside the handleRequest() method of the Handler Class, and it simply is added to the start of each return in order to offer easier understanding of how to use the autograder.
+
+Here are the remaining examples:
+
+When there is a compile error due to syntax: [https://github.com/ucsd-cse15l-f22/list-methods-compile-error.git](https://github.com/ucsd-cse15l-f22/list-methods-compile-error.git)  
+<img width="577" alt="image" src="https://user-images.githubusercontent.com/122249106/224526824-233c9035-e594-4c3b-901e-9787e01775b3.png">
+
+When the filename is off: [https://github.com/ucsd-cse15l-f22/list-methods-filename.git](https://github.com/ucsd-cse15l-f22/list-methods-filename.git)  
+<img width="590" alt="image" src="https://user-images.githubusercontent.com/122249106/224526840-b01dceaf-1fe0-4a0b-bb4d-6716c7cb13fa.png">
+
+When ListExamples is nested inside a directory: [https://github.com/ucsd-cse15l-f22/list-methods-nested.git](https://github.com/ucsd-cse15l-f22/list-methods-nested.git)  
+<img width="582" alt="image" src="https://user-images.githubusercontent.com/122249106/224526880-a227ee7b-5a37-45b9-81d5-2a817d232cf3.png">
+
+### Conclusion ###
+Ultimately, I really enjoyed the grading script because it combines a wide variety of aspects such as servers, github, bash, and scripts towards a practical and common usage. While it still has many improvements to make, being able to create a program like this with so much more potential is something I never would have been able to do without this class. I very much enjoyed seeing how computer science lessons learned can be applied directly on the computer, and the freedom given to explore. Anyway, here is my final code:
 
 
 ````bash
